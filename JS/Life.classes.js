@@ -1,14 +1,22 @@
 angular.module("Life")
-    .service("cell", function (Neighbours) {
-        function Cell() {
-            this.status = false;
+ .service("emptyCell", function () {
+        function EmptyCell() {}
+        EmptyCell.prototype = {
+            life: function () {}
+        };
+        EmptyCell.prototype.constructor = EmptyCell;
 
-
+        function create() {
+            return new EmptyCell();
         }
+        return {
+            create: create,
+            EmptyCell: EmptyCell
+        }
+    })
+    .service("cell", function (Neighbours, emptyCell) {
+        function Cell() {}
         Cell.prototype = {
-            type: "cell",
-            ntype : "cell",
-            nstatus : false,
             life: function ($scope, x, y) {
                 var neighbours = Neighbours.find($scope, x, y);
                 var counterOfLiveNeighboursRabbits = 0;
@@ -50,14 +58,16 @@ angular.module("Life")
             Cell: Cell
         }
     })
-    .service("rabbit", function (Neighbours, cell) {
+    .service("rabbit", function (Neighbours, emptyCell) {
 
         function Rabbit() {
-
+            this.status = false;
+            this.ntype = "rabbit",
+            this.nstatus = false,
+            this.type = "rabbit";
         }
-        Rabbit.prototype = Object.create(cell.Cell.prototype);
+        Rabbit.prototype = Object.create(emptyCell.EmptyCell.prototype);
         Rabbit.prototype.constructor = Rabbit;
-        Rabbit.prototype.type = "rabbit";
         Rabbit.prototype.life = function ($scope, x, y) {
             var neighbours = Neighbours.find($scope, x, y);
             var counterOfLiveNeighbours = 0;
@@ -93,13 +103,15 @@ angular.module("Life")
         }
 
     })
-    .service("fox", function (Neighbours, cell) {
+    .service("fox", function (Neighbours, emptyCell) {
         function Fox() {
-
+            this.status = false;
+            this.ntype = "fox",
+            this.nstatus = false,
+            this.type = "fox";
         }
-        Fox.prototype = Object.create(cell.Cell.prototype);
+        Fox.prototype = Object.create(emptyCell.EmptyCell.prototype);
         Fox.prototype.constructor = Fox;
-        Fox.prototype.type = "fox";
         Fox.prototype.life = function ($scope, x, y) {
             var neighbours = Neighbours.find($scope, x, y);
             var counterOfLiveNeighbours = 0;
