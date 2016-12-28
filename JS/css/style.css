@@ -1,0 +1,26 @@
+body {
+    background-color: #F8F2D8;
+}
+canvas {
+    margin: 50px;
+    position: absolute;
+    display: block;
+}
+#canvas {
+    z-index: 1;
+}
+
+#cells {
+    z-index: 2;
+}
+#run {
+
+}
+header {
+    min-height: 50px;
+    border-radius: 10px;
+    background-color: #93A143;
+}
+p {
+    display: inline-block;
+}

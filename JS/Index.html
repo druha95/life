@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html ng-app="Life">
+    <head>
+        <title>Game LIFE</title>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" href="css/style.css">
+        <script src="bower_components/angular/angular.js"></script>
+        <script src="Life.js"></script>
+        <script src="Life.controllers.js"></script>
+        <script src="Life.classes.js"></script>
+        <script src="Life.providers.js"></script>
+    </head>
+    <body ng-controller="Main">
+        <header>
+            <input type="button" value="Run" id="run" ng-click="run()">
+            <input type="button" value="Random" id="random" ng-click="random()">
+            <p>
+                <input type="range" id="size" min="10" max="100" ng-model="cellSize" ng-change="change()">
+                {{cellSize}}
+            </p>
+            <p>
+                <input type="range" id="width" min="{{cellSize}}" max="1500" step="{{cellSize}}" ng-model="width" ng-change="change()">
+                {{width}}
+            </p>
+            <p>
+                <input type="range" id="height" min="{{cellSize}}" max="1500" step="{{cellSize}}" ng-model="height" ng-change="change()">
+                {{height}}
+            </p>
+        </header>
+        <div>
+            <canvas id="canvas"></canvas>
+            <canvas id="cells"></canvas>
+        </div>
+    </body>
+</html>
