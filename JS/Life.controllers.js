@@ -34,7 +34,7 @@ angular.module("Life")
 
         $scope.run = function() {
             if(!$scope.runDescriptor) {
-                // $scope.random();
+                $scope.random();
                 $scope.runDescriptor = $interval(function () {
                     if(generation.length != 0){
                         cellsContext.clearRect(0, 0, grid.width, grid.height);
